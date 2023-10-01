@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{89A9
 		AddMigration.txt = AddMigration.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "..\Services\Services.csproj", "{554E941C-90C0-4379-92AF-624BE4346DD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{180A2C25-C5B8-4338-A751-CCC7961A0858}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +34,10 @@ Global
 		{768C8D3F-1DA8-4C71-8202-1210B31A7FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{768C8D3F-1DA8-4C71-8202-1210B31A7FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{768C8D3F-1DA8-4C71-8202-1210B31A7FA4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{554E941C-90C0-4379-92AF-624BE4346DD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{554E941C-90C0-4379-92AF-624BE4346DD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{554E941C-90C0-4379-92AF-624BE4346DD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{554E941C-90C0-4379-92AF-624BE4346DD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{180A2C25-C5B8-4338-A751-CCC7961A0858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{180A2C25-C5B8-4338-A751-CCC7961A0858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{180A2C25-C5B8-4338-A751-CCC7961A0858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{180A2C25-C5B8-4338-A751-CCC7961A0858}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
