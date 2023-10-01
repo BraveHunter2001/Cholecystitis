@@ -9,5 +9,5 @@ public class Stone
     public string Color { get; set; }
     public string Сomposition { get; set; }
 
-    public List<Cholecystit> Cholecystits { get; set; }
+    public Cholecystit Cholecystit { get; set; }
 }

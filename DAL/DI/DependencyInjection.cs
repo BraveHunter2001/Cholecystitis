@@ -13,6 +13,9 @@ public static class DependencyInjection
             opt => opt.UseNpgsql("Server=postgres;Port=5432;Database=cholecystitis;User ID=pguser;Password=pgadmin;")
         );
 
-        servicies.AddTransient<IRepository<Bacterium>,BacteriumRepository>();
+        servicies.AddScoped<IRepository<Bacterium>,BacteriumRepository>();
+        servicies.AddScoped<IRepository<Stone>, StoneRepository>();
+        servicies.AddScoped<IRepository<Patient>, PatinetRepository>();
+        servicies.AddScoped<IRepository<Cholecystit>,  CholecystitRepository>();
     }
 }
