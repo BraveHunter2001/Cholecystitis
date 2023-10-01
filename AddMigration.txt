@@ -1,0 +1,1 @@
+dotnet ef --startup-project ../OpenAPI migrations add InitMigration -c CholecystitisContext

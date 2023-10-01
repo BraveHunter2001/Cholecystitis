@@ -1,0 +1,52 @@
+version: '3.4'
+
+networks:
+  dev:
+    driver: bridge
+
+services:
+  openapi:
+    image: ${DOCKER_REGISTRY-}openapi
+    build:
+      context: .
+      dockerfile: OpenAPI/Dockerfile
+    depends_on:
+      - postgres
+    networks:
+        - dev
+  
+  postgres:
+    container_name: postgres_container
+    image: 'postgres:latest'
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgadmin
+      PGDATA: /data/postgres
+      POSTGRES_DB: cholecystitis
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    networks:
+        - dev
+
+  
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@cholecystitis.org
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    restart: always
+    networks:
+        - dev
+
+volumes:
+    postgres:
+    pgadmin:
