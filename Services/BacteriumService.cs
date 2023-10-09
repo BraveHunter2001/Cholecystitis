@@ -5,9 +5,9 @@ namespace Services;
 
 public interface IBacteriumService
 {
-    public void AddNew(string name);
-    public List<string> GetNamesAllBacterium();
-    public Bacterium GetById(int id);
+    public Guid AddNew(string name);
+    public List<Bacterium> GetAllBacterium();
+    public Bacterium GetById(Guid id);
     public Bacterium GetByName(string name);
 }
 
@@ -20,10 +20,15 @@ public class BacteriumService : IBacteriumService
         _repository = repository;
     }
 
-    public void AddNew(string name) => _repository.Add(new Bacterium { Name = name });
+    public Guid AddNew(string name)
+    {
+        var id = Guid.NewGuid();
+        _repository.Add(new Bacterium { Id = id, Name = name });
+        return id;
+    }
 
-    public List<string> GetNamesAllBacterium() => _repository.GetAll().Select(b => b.Name).ToList();
-    public Bacterium GetById(int id) => _repository.GetById(id);
+    public List<Bacterium> GetAllBacterium() => _repository.GetAll().ToList();
+    public Bacterium GetById(Guid id) => _repository.GetById(id);
 
     public Bacterium GetByName(string name) => _repository.GetAll().FirstOrDefault(b => b.Name == name);
 }

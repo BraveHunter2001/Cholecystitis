@@ -11,7 +11,7 @@ public class StoneRepository : IRepository<Stone>
         _context = context;
     }
 
-    public Stone GetById(int id) => GetAll().FirstOrDefault(x => x.Id == id);
+    public Stone GetById(Guid id) => GetAll().FirstOrDefault(x => x.Id == id);
 
     public IEnumerable<Stone> GetAll() => _context.Stones;
 
@@ -30,11 +30,13 @@ public class StoneRepository : IRepository<Stone>
         stone.Сomposition = stone.Сomposition;
         stone.Color = entity.Color;
         stone.Cholecystit = entity.Cholecystit;
+        stone.CholecystitId = entity.CholecystitId;
+
         _context.Stones.Update(stone);
         _context.SaveChanges();
     }
 
-    public void Delete(int id)
+    public void Delete(Guid id)
     {
         var stone = GetById(id);
         if (stone is null) return;

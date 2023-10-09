@@ -1,9 +1,5 @@
-﻿using DAL.Model;
-using DAL.Repositories;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using OpenAPI.Services;
+﻿using Microsoft.AspNetCore.Mvc;
+using Services;
 
 namespace OpenAPI.Controllers
 {
@@ -11,15 +7,15 @@ namespace OpenAPI.Controllers
     [ApiController]
     public class BacteriumController : ControllerBase
     {
-        private BacteriumService _bacteriumService;
+        private readonly IBacteriumService _bacteriumService;
 
-        public BacteriumController(BacteriumService bacteriumService)
+        public BacteriumController(IBacteriumService bacteriumService)
         {
             _bacteriumService = bacteriumService;
         }
 
         [HttpGet]
-        public IActionResult GetAll() => Ok(_bacteriumService.GetNamesAllBacterium());
+        public IActionResult GetAll() => Ok(_bacteriumService.GetAllBacterium());
 
         [HttpPost]
         public IActionResult Create([FromBody] string name)

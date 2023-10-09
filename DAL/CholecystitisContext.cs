@@ -12,29 +12,34 @@ public class CholecystitisContext : DbContext
 
     public CholecystitisContext(DbContextOptions<CholecystitisContext> option) : base(option)
     {
-        Database.EnsureCreated();
     }
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<Patient>().HasOne(p => p.Cholecystit)
-            .WithOne(c => c.Patient)
+        builder.Entity<Cholecystit>()
+            .HasOne(c => c.Patient)
+            .WithOne(p => p.Cholecystit)
             .HasForeignKey<Patient>(p => p.CholecystitId);
 
-        builder.Entity<Bacterium>().HasKey(b => b.Id);
+        builder.Entity<Cholecystit>()
+            .HasMany(c => c.Stones)
+            .WithOne(s => s.Cholecystit)
+            .HasForeignKey(s => s.CholecystitId);
 
-        builder.Entity<Bacterium>()
-            .Property(b => b.Id)
-            .ValueGeneratedOnAdd();
+
+        builder.Entity<Cholecystit>()
+            .HasMany(c => c.Bacterias)
+            .WithMany(b => b.Cholecystits);
+            
 
         builder.Entity<Bacterium>()
           .HasData( new[] { 
-              new { Id = 1, Name = "Escherichia coli" }, 
-              new { Id = 2, Name = "Klebsiella spp" },
-              new { Id = 3, Name = "Enterobacter spp" },
-              new { Id = 4, Name = "Bacteroides" },
-              new { Id = 5, Name = "Clostridia spp" },
-              new { Id = 6, Name = "Fusobacterium spp" },
-              new { Id = 7, Name = "enterococci" },
+              new { Id = Guid.NewGuid(), Name = "Escherichia coli" }, 
+              new { Id = Guid.NewGuid(), Name = "Klebsiella spp" },
+              new { Id = Guid.NewGuid(), Name = "Enterobacter spp" },
+              new { Id = Guid.NewGuid(), Name = "Bacteroides" },
+              new { Id = Guid.NewGuid(), Name = "Clostridia spp" },
+              new { Id = Guid.NewGuid(), Name = "Fusobacterium spp" },
+              new { Id = Guid.NewGuid(), Name = "enterococci" },
           });
 
         

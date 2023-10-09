@@ -7,11 +7,9 @@ namespace Services;
 
 public interface IStoneService
 {
-    public void Add(StoneType stoneType, string color, string composition, Cholecystit cholecystit);
-    public void Remove(int id);
-    public Stone GetStone(int id);
-    public void ChangeColor(int id, string color);
-    public void ChangeСomposition(int id, string composition);
+    public Stone Add(StoneType stoneType, string color, string composition);
+    public void Remove(Guid id);
+    public Stone GetStone(Guid id);
 }
 
 public class StoneService : IStoneService
@@ -23,32 +21,19 @@ public class StoneService : IStoneService
         _stoneRepository = stoneRepository;
     }
 
-    public void Add(StoneType stoneType, string color, string composition, Cholecystit cholecystit)
+    public Stone Add(StoneType stoneType, string color, string composition)
     {
-        var stone = new Stone { Type = stoneType, Color = color, Сomposition = composition, Cholecystit = cholecystit };
+        var id = Guid.NewGuid();
+        var stone = new Stone { Id = id, Type = stoneType, Color = color, Сomposition = composition};
         _stoneRepository.Add(stone);
+
+        return stone;
     }
 
-    public void Remove(int id)
+    public void Remove(Guid id)
     {
         _stoneRepository.Delete(id);
     }
 
-    public Stone GetStone(int id) => _stoneRepository.GetById(id);
-
-    public void ChangeColor(int id, string color)
-    {
-        var stone = _stoneRepository.GetById(id);
-        if (stone is null) return;
-        stone.Color = color;
-        _stoneRepository.Update(stone);
-    }
-
-    public void ChangeСomposition(int id, string composition)
-    {
-        var stone = _stoneRepository.GetById(id);
-        if (stone is null) return;
-        stone.Сomposition = composition;
-        _stoneRepository.Update(stone);
-    }
+    public Stone GetStone(Guid id) => _stoneRepository.GetById(id);
 }

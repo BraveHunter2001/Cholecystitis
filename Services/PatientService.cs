@@ -1,13 +1,14 @@
 ﻿using DAL.Model;
 using DAL.Model.Enum;
 using DAL.Repositories;
+using System.Xml.Linq;
 
 namespace Services;
 
 public interface IPatientService
 {
-    public void Create(string name, int age, Gender gender, string rickFactors, Cholecystit cholecystit);
-    public Patient GetPatient(int id);
+    public Patient Create(string name, int age, Gender gender, string rickFactors);
+    public Patient GetPatient(Guid id);
 }
 
 public class PatientService : IPatientService
@@ -19,19 +20,23 @@ public class PatientService : IPatientService
         _repository = repository;
     }
 
-    public void Create(string name, int age, Gender gender, string rickFactors, Cholecystit cholecystit)
+    public Patient Create(string name, int age, Gender gender, string rickFactors)
     {
-        _repository.Add(new Patient
+        var id = Guid.NewGuid();
+        var patient = new Patient
         {
+            Id = id,
             Name = name,
             Age = age,
             Gender = gender,
-            Cholecystit = cholecystit,
-            CholecystitId = cholecystit.Id,
-            RiskFactors = rickFactors
-        });
+            RiskFactors = rickFactors,
+        };
+
+        _repository.Add(patient);
+
+        return patient;
     }
 
-    public Patient GetPatient(int id) => _repository.GetById(id);
+    public Patient GetPatient(Guid id) => _repository.GetById(id);
 
 }

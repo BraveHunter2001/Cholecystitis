@@ -6,7 +6,9 @@ public static class DependencyInjection
 {
     public static void AddCholicystitsServices(this IServiceCollection servicies)
     {
-        servicies.AddScoped<IBacteriumService, BacteriumService>();
-        servicies.AddScoped<IStoneService, StoneService>(); 
+        servicies.AddTransient<IBacteriumService, BacteriumService>();
+        servicies.AddTransient<IStoneService, StoneService>(); 
+        servicies.AddTransient<IPatientService, PatientService>();
+        servicies.AddTransient<ICholecstitisService, CholecstitisService>();
     }
 }

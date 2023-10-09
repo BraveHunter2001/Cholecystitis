@@ -11,7 +11,7 @@ public class BacteriumRepository : IRepository<Bacterium>
         _dbcontext = dbcontext;
     }
 
-    public Bacterium GetById(int id) => _dbcontext.Bacteriums.FirstOrDefault(b => b.Id == id);
+    public Bacterium GetById(Guid id) => _dbcontext.Bacteriums.FirstOrDefault(b => b.Id == id);
     public IEnumerable<Bacterium> GetAll() => _dbcontext.Bacteriums;
 
     public void Add(Bacterium entity)
@@ -24,11 +24,12 @@ public class BacteriumRepository : IRepository<Bacterium>
     {
         var oldB = _dbcontext.Bacteriums.FirstOrDefault(b => b.Id == entity.Id);
         if (oldB is null) return;
+        oldB.Cholecystits = entity.Cholecystits;
         oldB.Name = entity.Name;
         _dbcontext.SaveChanges();
     }
 
-    public void Delete(int id)
+    public void Delete(Guid id)
     {
         var oldB = _dbcontext.Bacteriums.FirstOrDefault(b => b.Id == id);
         if (oldB is null) return;

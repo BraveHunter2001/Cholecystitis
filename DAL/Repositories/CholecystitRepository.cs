@@ -1,4 +1,5 @@
 ﻿using DAL.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories;
 
@@ -11,9 +12,12 @@ public class CholecystitRepository : IRepository<Cholecystit>
         _context = context;
     }
 
-    public Cholecystit GetById(int id) => GetAll().FirstOrDefault(x => x.Id == id);
+    public Cholecystit GetById(Guid id) => GetAll().FirstOrDefault(x => x.Id == id);
 
-    public IEnumerable<Cholecystit> GetAll() => _context.Cholecystits;
+    public IEnumerable<Cholecystit> GetAll() => _context.Cholecystits
+        .Include(c => c.Stones)
+        .Include(c => c.Bacterias)
+        .Include(c => c.Patient);
 
     public void Add(Cholecystit entity)
     {
@@ -28,7 +32,6 @@ public class CholecystitRepository : IRepository<Cholecystit>
 
         chol.Degree = entity.Degree;
         chol.Type = entity.Type;
-        chol.BacteriasIds = entity.BacteriasIds;
         chol.Bacterias = entity.Bacterias;
         chol.CausedComplications = entity.CausedComplications;
         chol.Histology = entity.Histology;
@@ -42,7 +45,7 @@ public class CholecystitRepository : IRepository<Cholecystit>
         _context.SaveChanges();
     }
 
-    public void Delete(int id)
+    public void Delete(Guid id)
     {
         var chol = GetById(id);
         if (chol is null) return;

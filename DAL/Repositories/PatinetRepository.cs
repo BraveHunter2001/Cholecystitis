@@ -11,8 +11,7 @@ public class PatinetRepository : IRepository<Patient>
         _context = context;
     }
 
-    public Patient GetById(int id) => GetAll().FirstOrDefault(x => x.Id == id);
-
+    public Patient GetById(Guid id) => GetAll().FirstOrDefault(x => x.Id == id);
     public IEnumerable<Patient> GetAll() => _context.Patients;
 
     public void Add(Patient entity)
@@ -37,7 +36,7 @@ public class PatinetRepository : IRepository<Patient>
         _context.SaveChanges();
     }
 
-    public void Delete(int id)
+    public void Delete(Guid id)
     {
         var patient = GetById(id);
         if (patient is null) return;
