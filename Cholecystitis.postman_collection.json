@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "037d0e71-2fec-4b2e-860e-c3bf682f8448",
+		"name": "Cholecystitis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23031632"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"degree\": 0,\r\n    \"type\": 0,\r\n    \"symptoms\": \"Test\",\r\n    \"pathophysiology\": \"Test\",\r\n    \"histology\": \"Test\",\r\n    \"causedComplications\": \"Test\",\r\n    \"treatment\": \"Test\",\r\n    \"bacteriesID\": [],\r\n    \"patient\": {\r\n        \"name\": \"Test\",\r\n        \"age\": 0,\r\n        \"gender\": 0,\r\n        \"riskFactors\": \"Test\"\r\n    },\r\n    \"stones\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/Cholecystitis/",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"Cholecystitis",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"degree\": 0,\r\n    \"type\": 0,\r\n    \"symptoms\": \"Test\",\r\n    \"pathophysiology\": \"Test\",\r\n    \"histology\": \"Test\",\r\n    \"causedComplications\": \"Test\",\r\n    \"treatment\": \"Test\",\r\n    \"bacteriesID\": [],\r\n    \"patient\": {\r\n        \"name\": \"Test\",\r\n        \"age\": 0,\r\n        \"gender\": 0,\r\n        \"riskFactors\": \"Test\"\r\n    },\r\n    \"stones\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/Cholecystitis/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"Cholecystitis",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Oct 2023 14:27:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "\"Cholecystit was successful CREATE with id c5a77760-f383-4e7a-a4a9-7f2d96c87ccc\""
+				}
+			]
+		},
+		{
+			"name": "Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/Cholecystitis/6d6d45ad-e108-47ae-ad93-c561ea7e7277",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"Cholecystitis",
+						"6d6d45ad-e108-47ae-ad93-c561ea7e7277"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/Cholecystitis/6d6d45ad-e108-47ae-ad93-c561ea7e7277",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"Cholecystitis",
+								"6d6d45ad-e108-47ae-ad93-c561ea7e7277"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Oct 2023 14:28:39 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"6d6d45ad-e108-47ae-ad93-c561ea7e7277\",\n    \"degreeCholestits\": 0,\n    \"type\": 0,\n    \"symptoms\": \"None\",\n    \"pathophysiology\": \"None\",\n    \"histology\": \"None\",\n    \"causedComplications\": \"None\",\n    \"treatment\": \"None\",\n    \"patient\": {\n        \"id\": \"c45f0fb3-224b-49ad-8dec-ed86e4a8127d\",\n        \"name\": \"Ilya\",\n        \"age\": 22,\n        \"gender\": 0,\n        \"riskFactors\": \"None\",\n        \"cholecystitId\": \"6d6d45ad-e108-47ae-ad93-c561ea7e7277\",\n        \"cholecystit\": null\n    },\n    \"stones\": [\n        {\n            \"id\": \"f356dca0-b814-4450-b538-0f3f5739d79c\",\n            \"type\": 0,\n            \"color\": \"Red\",\n            \"composition\": null,\n            \"cholecystitId\": \"6d6d45ad-e108-47ae-ad93-c561ea7e7277\",\n            \"cholecystit\": null\n        }\n    ],\n    \"bacterias\": [],\n    \"hasBacterialInfection\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"degree\": null,\r\n  \"type\": null,\r\n  \"symptoms\": \"high temperature\",\r\n  \"pathophysiology\": null,\r\n  \"histology\": null,\r\n  \"causedComplications\": null,\r\n  \"treatment\": null,\r\n  \"bacteriesID\": null,\r\n  \"patient\": null,\r\n  \"stones\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api}}/Cholecystitis/6D6D45AD-E108-47AE-AD93-C561EA7E7277",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"Cholecystitis",
+						"6D6D45AD-E108-47AE-AD93-C561EA7E7277"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"degree\": null,\r\n  \"type\": null,\r\n  \"symptoms\": \"high temperature\",\r\n  \"pathophysiology\": null,\r\n  \"histology\": null,\r\n  \"causedComplications\": null,\r\n  \"treatment\": null,\r\n  \"bacteriesID\": null,\r\n  \"patient\": null,\r\n  \"stones\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/Cholecystitis/6D6D45AD-E108-47AE-AD93-C561EA7E7277",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"Cholecystitis",
+								"6D6D45AD-E108-47AE-AD93-C561EA7E7277"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Oct 2023 14:29:00 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "\"Cholecystit was successful UPDATE with id 6d6d45ad-e108-47ae-ad93-c561ea7e7277\""
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/Cholecystitis/6d6d45ad-e108-47ae-ad93-c561ea7e7277",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"Cholecystitis",
+						"6d6d45ad-e108-47ae-ad93-c561ea7e7277"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "7bb67b11-f24b-4f1e-bbdc-b26081569595",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/Cholecystitis/6d6d45ad-e108-47ae-ad93-c561ea7e7277",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"Cholecystitis",
+								"6d6d45ad-e108-47ae-ad93-c561ea7e7277"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "7bb67b11-f24b-4f1e-bbdc-b26081569595",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Oct 2023 14:29:10 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "\"Cholecystit was successful DELETE with id 6d6d45ad-e108-47ae-ad93-c561ea7e7277\""
+				}
+			]
+		},
+		{
+			"name": "All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api}}/Cholecystitis/all",
+					"host": [
+						"{{api}}"
+					],
+					"path": [
+						"Cholecystitis",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api",
+			"value": "https://localhost:58660/api",
+			"type": "string"
+		}
+	]
+}
