@@ -10,39 +10,39 @@ namespace OpenAPI.Controllers
     [ApiController]
     public class CholecystitisController : ControllerBase
     {
-        private readonly ICholecstitisService _cholecstitisService;
+        private readonly ICholecystitsService _cholecystitsService;
 
-        public CholecystitisController(ICholecstitisService cholecstitisService)
+        public CholecystitisController(ICholecystitsService cholecystitsService)
         {
-            _cholecstitisService = cholecstitisService;
+            _cholecystitsService = cholecystitsService;
         }
 
         [HttpPost]
-        public IActionResult Create(CholestitsDTO cholecystit)
+        public IActionResult Create(CholecystitDTO cholecystit)
         {
-            var ch = _cholecstitisService.Create(cholecystit);
+            var ch = _cholecystitsService.Create(cholecystit);
             return Ok(ch);
         }
 
         [HttpGet]
-        public IActionResult Get(Guid id)
+        public IActionResult Get([FromQuery]Guid id)
         {
-            var res = _cholecstitisService.GetCholecystit(id);
-            string jsonString = JsonConvert.SerializeObject(res, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
-            return Ok(jsonString);
+            var res = _cholecystitsService.GetCholecystit(id);
+
+            return Ok(res);
         }
 
         [HttpPut]
-        public IActionResult Update(Cholecystit cholecystit)
+        public IActionResult Update([FromQuery] Guid id, CholecystitDTO cholecystitDto)
         {
-            _cholecstitisService.Update(cholecystit);
+            _cholecystitsService.Update(id, cholecystitDto);
             return Ok();
         }
 
         [HttpDelete]
         public IActionResult Delete(Guid id)
         {
-            _cholecstitisService.Delete(id);
+            _cholecystitsService.Delete(id);
             return Ok();
         }
     }

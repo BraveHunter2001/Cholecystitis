@@ -3,7 +3,7 @@
 /// <summary>
 /// Степень болезни
 /// </summary>
-public enum Degree
+public enum DegreeCholestits
 {
     /// <summary>
     /// Острая

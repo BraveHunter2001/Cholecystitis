@@ -8,6 +8,7 @@ public interface IBacteriumService
     public Guid AddNew(string name);
     public List<Bacterium> GetAllBacterium();
     public Bacterium GetById(Guid id);
+    public Bacterium[] GetById(Guid[] ids);
     public Bacterium GetByName(string name);
 }
 
@@ -29,6 +30,6 @@ public class BacteriumService : IBacteriumService
 
     public List<Bacterium> GetAllBacterium() => _repository.GetAll().ToList();
     public Bacterium GetById(Guid id) => _repository.GetById(id);
-
+    public Bacterium[] GetById(Guid[] ids) => ids.Select(GetById).ToArray();
     public Bacterium GetByName(string name) => _repository.GetAll().FirstOrDefault(b => b.Name == name);
 }

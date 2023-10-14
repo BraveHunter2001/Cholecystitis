@@ -1,4 +1,5 @@
 ﻿using DAL.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories;
 
@@ -12,7 +13,9 @@ public class PatinetRepository : IRepository<Patient>
     }
 
     public Patient GetById(Guid id) => GetAll().FirstOrDefault(x => x.Id == id);
-    public IEnumerable<Patient> GetAll() => _context.Patients;
+    public IEnumerable<Patient> GetAll() => _context.Patients
+        .Include(p => p.Cholecystit)
+        .ThenInclude(c => c.Stones);
 
     public void Add(Patient entity)
     {

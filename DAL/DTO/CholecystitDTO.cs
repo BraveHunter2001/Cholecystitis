@@ -2,10 +2,10 @@
 
 namespace DAL.DTO;
 
-public class CholestitsDTO
+public class CholecystitDTO
 {
-    public Degree Degree { get; set; }
-    public CholecystitType Type { get; set; }
+    public DegreeCholestits? Degree { get; set; }
+    public CholecystitType? Type { get; set; }
     public string Symptoms { get; set; }
     public string Pathophysiology { get; set; }
     public string Histology { get; set; }

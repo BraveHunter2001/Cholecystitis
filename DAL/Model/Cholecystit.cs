@@ -6,7 +6,7 @@ namespace DAL.Model;
 public class Cholecystit
 {
     public Guid Id { get; set; }
-    public Degree Degree { get; set; }
+    public DegreeCholestits DegreeCholestits { get; set; }
     public CholecystitType Type { get; set; }
     public string Symptoms { get; set; }
     public string Pathophysiology { get; set; }

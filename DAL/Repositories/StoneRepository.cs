@@ -1,4 +1,5 @@
 ﻿using DAL.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories;
 
@@ -13,7 +14,7 @@ public class StoneRepository : IRepository<Stone>
 
     public Stone GetById(Guid id) => GetAll().FirstOrDefault(x => x.Id == id);
 
-    public IEnumerable<Stone> GetAll() => _context.Stones;
+    public IEnumerable<Stone> GetAll() => _context.Stones.Include(p => p.Cholecystit);
 
     public void Add(Stone entity)
     {
@@ -27,7 +28,7 @@ public class StoneRepository : IRepository<Stone>
         if (stone is null) return;
 
         stone.Type = entity.Type;
-        stone.Сomposition = stone.Сomposition;
+        stone.Composition = stone.Composition;
         stone.Color = entity.Color;
         stone.Cholecystit = entity.Cholecystit;
         stone.CholecystitId = entity.CholecystitId;

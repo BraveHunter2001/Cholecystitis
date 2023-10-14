@@ -30,7 +30,7 @@ public class CholecystitRepository : IRepository<Cholecystit>
         var chol = GetById(entity.Id);
         if (chol is null) return;
 
-        chol.Degree = entity.Degree;
+        chol.DegreeCholestits = entity.DegreeCholestits;
         chol.Type = entity.Type;
         chol.Bacterias = entity.Bacterias;
         chol.CausedComplications = entity.CausedComplications;
