@@ -334,7 +334,7 @@
 	"variable": [
 		{
 			"key": "api",
-			"value": "https://localhost:58660/api",
+			"value": "https://localhost:5001/api",
 			"type": "string"
 		}
 	]
