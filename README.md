@@ -26,7 +26,7 @@
    * Swagger по `https://localhost:5001/swagger/index.html` или `http://localhost:5000/swagger/index.html`.
    * Postman. В репозитории лежит **Cholecystitis.postman_collection.json**. Импортируете его себе в Postman.
    * Что-то другое, то url api = `https://localhost:5001/api/` или `https://localhost:5001/api/`
-4. Подключение к БД
-  * pgAdmin. url `http://localhost:5050/browser/` креды к базе через pgAdmin: Server=postgres;Port=5432;Database=cholecystitis;User ID=pguser;Password=pgadmin;
-  * Через внешнее, то замените Server=postgres на localhost
+4. Подключение к БД:
+   * pgAdmin. url `http://localhost:5050/browser/` креды к базе через pgAdmin: Server=**postgres**;Port=**5432**;Database=**cholecystitis**;User ID=**pguser**;Password=**pgadmin**;
+   * Через внешнее, то замените Server=**postgres** на **localhost**
       
