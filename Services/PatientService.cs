@@ -11,8 +11,8 @@ public interface IPatientService
     public Patient Create(string name, int age, Gender gender, string rickFactors, Guid cholecystitId);
     public Patient Create(PatientDto patientDto, Guid cholecystitId);
     public Patient GetPatient(Guid id);
-    public void Removed(Guid id);
-    public void Update(Patient patient);
+    public Patient Removed(Guid id);
+    public Patient Update(Patient patient);
 }
 
 public class PatientService : IPatientService
@@ -62,6 +62,6 @@ public class PatientService : IPatientService
     public Patient Create(PatientDto patientDto, Guid cholecystitId) => Create(patientDto.Name, patientDto.Age, patientDto.Gender, patientDto.RiskFactors, cholecystitId);
 
     public Patient GetPatient(Guid id) => _repository.GetById(id);
-    public void Removed(Guid id) => _repository.Delete(id);
-    public void Update(Patient patient) => _repository.Update(patient);
+    public Patient Removed(Guid id) => _repository.Delete(id);
+    public Patient Update(Patient patient) => _repository.Update(patient);
 }

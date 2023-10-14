@@ -20,20 +20,23 @@ public class BacteriumRepository : IRepository<Bacterium>
         _dbcontext.SaveChanges();
     }
 
-    public void Update(Bacterium entity)
+    public Bacterium Update(Bacterium entity)
     {
         var oldB = _dbcontext.Bacteriums.FirstOrDefault(b => b.Id == entity.Id);
-        if (oldB is null) return;
+        if (oldB is null) return null;
         oldB.Cholecystits = entity.Cholecystits;
         oldB.Name = entity.Name;
         _dbcontext.SaveChanges();
+        return oldB;
     }
 
-    public void Delete(Guid id)
+    public Bacterium Delete(Guid id)
     {
         var oldB = _dbcontext.Bacteriums.FirstOrDefault(b => b.Id == id);
-        if (oldB is null) return;
+        if (oldB is null) return null;
         _dbcontext.Remove(oldB);
         _dbcontext.SaveChanges();
+
+        return oldB;
     }
 }

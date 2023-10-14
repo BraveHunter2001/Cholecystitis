@@ -23,10 +23,10 @@ public class PatinetRepository : IRepository<Patient>
         _context.SaveChanges();
     }
 
-    public void Update(Patient entity)
+    public Patient Update(Patient entity)
     {
         var patient = GetById(entity.Id);
-        if (patient is null) return;
+        if (patient is null) return null;
 
         patient.Name = entity.Name;
         patient.Age = entity.Age;
@@ -37,14 +37,16 @@ public class PatinetRepository : IRepository<Patient>
 
         _context.Patients.Update(patient);
         _context.SaveChanges();
+        return patient;
     }
 
-    public void Delete(Guid id)
+    public Patient Delete(Guid id)
     {
         var patient = GetById(id);
-        if (patient is null) return;
+        if (patient is null) return null;
 
         _context.Remove(patient);
         _context.SaveChanges();
+        return patient;
     }
 }

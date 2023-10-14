@@ -25,10 +25,10 @@ public class CholecystitRepository : IRepository<Cholecystit>
         _context.SaveChanges();
     }
 
-    public void Update(Cholecystit entity)
+    public Cholecystit Update(Cholecystit entity)
     {
         var chol = GetById(entity.Id);
-        if (chol is null) return;
+        if (chol is null) return null;
 
         chol.DegreeCholestits = entity.DegreeCholestits;
         chol.Type = entity.Type;
@@ -43,14 +43,16 @@ public class CholecystitRepository : IRepository<Cholecystit>
 
         _context.Cholecystits.Update(chol);
         _context.SaveChanges();
+        return chol;
     }
 
-    public void Delete(Guid id)
+    public Cholecystit Delete(Guid id)
     {
         var chol = GetById(id);
-        if (chol is null) return;
+        if (chol is null) return null;
 
         _context.Remove(chol);
         _context.SaveChanges();
+        return chol;
     }
 }

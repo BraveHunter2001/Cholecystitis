@@ -14,8 +14,8 @@ public interface IStoneService
     public List<Stone> Add(StoneDto[] stonesDto, Guid cholecystitId);
     public void Remove(Guid id);
     public Stone GetStone(Guid id);
-    public void Update(Stone stone);
-    public void Update(List<Stone> stones);
+    public Stone Update(Stone stone);
+    public List<Stone> Update(List<Stone> stones);
 }
 
 public class StoneService : IStoneService
@@ -65,13 +65,14 @@ public class StoneService : IStoneService
 
     public Stone GetStone(Guid id) => _stoneRepository.GetById(id);
 
-    public void Update(Stone stone)
-    {
-        _stoneRepository.Update(stone);
-    }
+    public Stone Update(Stone stone)
+        => _stoneRepository.Update(stone);
 
-    public void Update(List<Stone> stones)
+    public List<Stone> Update(List<Stone> stones)
     {
-        foreach (var stone in stones) Update(stone);
+        var res = new List<Stone>();
+        foreach (var stone in stones) res.Add(Update(stone));
+
+        return res;
     }
 }

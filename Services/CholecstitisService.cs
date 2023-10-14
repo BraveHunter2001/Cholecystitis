@@ -10,9 +10,10 @@ public interface ICholecystitsService
 {
     public Cholecystit Create(CholecystitDTO cholecystit);
     public Cholecystit GetCholecystit(Guid id);
-    public void Update(Cholecystit cholecystit);
-    public void Update(Guid id, CholecystitDTO cholecystit);
-    public void Delete(Guid id);
+    public Cholecystit[] GetAll();
+    public Cholecystit Update(Cholecystit cholecystit);
+    public Cholecystit Update(Guid id, CholecystitDTO cholecystit);
+    public Cholecystit Delete(Guid id);
 }
 
 public class CholecystitsService : ICholecystitsService
@@ -32,6 +33,8 @@ public class CholecystitsService : ICholecystitsService
 
     public Cholecystit Create(CholecystitDTO cholecystit)
     {
+        if (!_bacteriumService.IsContain(cholecystit.BacteriesID)) return null;
+
         var id = Guid.NewGuid();
 
         var bacterias = cholecystit
@@ -69,12 +72,17 @@ public class CholecystitsService : ICholecystitsService
         return ch;
     }
 
-    public void Update(Cholecystit cholecystit) => _repository.Update(cholecystit);
+    public Cholecystit[] GetAll() => _repository.GetAll().ToArray();
 
-    public void Update(Guid id, CholecystitDTO cholecystit)
+
+    public Cholecystit Update(Cholecystit cholecystit) => _repository.Update(cholecystit);
+
+    public Cholecystit Update(Guid id, CholecystitDTO cholecystit)
     {
+        if (cholecystit.BacteriesID is not null && !_bacteriumService.IsContain(cholecystit.BacteriesID)) return null;
+
         var res = GetCholecystit(id);
-        if (res is null) return;
+        if (res is null) return null;
 
         if (cholecystit.Degree.HasValue) res.DegreeCholestits = cholecystit.Degree.Value;
         if (cholecystit.Type.HasValue) res.Type = cholecystit.Type.Value;
@@ -100,7 +108,8 @@ public class CholecystitsService : ICholecystitsService
             res.Bacterias = _bacteriumService.GetById(cholecystit.BacteriesID).ToList();
 
         _repository.Update(res);
+        return res;
     }
 
-    public void Delete(Guid id) => _repository.Delete(id);
+    public Cholecystit Delete(Guid id) => _repository.Delete(id);
 }

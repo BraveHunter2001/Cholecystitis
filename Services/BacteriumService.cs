@@ -10,6 +10,8 @@ public interface IBacteriumService
     public Bacterium GetById(Guid id);
     public Bacterium[] GetById(Guid[] ids);
     public Bacterium GetByName(string name);
+
+    public bool IsContain(Guid[] ids);
 }
 
 public class BacteriumService : IBacteriumService
@@ -32,4 +34,7 @@ public class BacteriumService : IBacteriumService
     public Bacterium GetById(Guid id) => _repository.GetById(id);
     public Bacterium[] GetById(Guid[] ids) => ids.Select(GetById).ToArray();
     public Bacterium GetByName(string name) => _repository.GetAll().FirstOrDefault(b => b.Name == name);
+
+    public bool IsContain(Guid[] ids)=>ids.All(id => GetById(id) != null);
+ 
 }

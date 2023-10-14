@@ -8,7 +8,7 @@ public static class InitStartDate
 {
     private static List<Guid> CholecystitsGuids = new()
     {
-        Guid.NewGuid(),
+        new Guid("6D6D45AD-E108-47AE-AD93-C561EA7E7277"),
         Guid.NewGuid(),
         Guid.NewGuid(),
     };

@@ -22,10 +22,10 @@ public class StoneRepository : IRepository<Stone>
         _context.SaveChanges();
     }
 
-    public void Update(Stone entity)
+    public Stone Update(Stone entity)
     {
         var stone = GetById(entity.Id);
-        if (stone is null) return;
+        if (stone is null) return null;
 
         stone.Type = entity.Type;
         stone.Composition = stone.Composition;
@@ -35,13 +35,17 @@ public class StoneRepository : IRepository<Stone>
 
         _context.Stones.Update(stone);
         _context.SaveChanges();
+
+        return stone;
     }
 
-    public void Delete(Guid id)
+    public Stone Delete(Guid id)
     {
         var stone = GetById(id);
-        if (stone is null) return;
+        if (stone is null) return null;
         _context.Stones.Remove(stone);
         _context.SaveChanges();
+
+        return stone;
     }
 }
