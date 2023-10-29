@@ -17,5 +17,6 @@ public static class DependencyInjection
         servicies.AddScoped<IRepository<Stone>, StoneRepository>();
         servicies.AddScoped<IRepository<Patient>, PatinetRepository>();
         servicies.AddScoped<IRepository<Cholecystit>,  CholecystitRepository>();
+        servicies.AddScoped<IRepository<LocalizationDictionary>, LocalizationDictionaryRepository>();
     }
 }

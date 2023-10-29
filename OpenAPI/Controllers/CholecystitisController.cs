@@ -10,17 +10,25 @@ namespace OpenAPI.Controllers
     public class CholecystitisController : ControllerBase
     {
         private readonly ICholecystitsService _cholecystitsService;
+        private readonly ILocalizationService _localization;
+        private readonly IHATEOASService _HATEOASService;
 
-        public CholecystitisController(ICholecystitsService cholecystitsService)
+        public CholecystitisController(ICholecystitsService cholecystitsService, ILocalizationService localization, IHATEOASService HATEOASService)
         {
             _cholecystitsService = cholecystitsService;
+            _localization = localization;
+            _HATEOASService = HATEOASService;
         }
 
         [HttpPost]
         public IActionResult Create([FromBody] CholecystitDTO cholecystit)
         {
             var ch = _cholecystitsService.Create(cholecystit);
-            return ch is not null ? Ok($"Cholecystit was successful CREATE with id {ch.Id}") : BadRequest("Error create cholecystit");
+
+            var lang = Request.Headers.AcceptLanguage.ToString(); 
+
+            return ch is not null ? Ok($"{_localization.Localize("SuccessfulCreate", lang)} {ch.Id}") :
+                BadRequest(_localization.Localize("BadCreate", lang));
         }
 
         [HttpGet("{id:guid}")]
@@ -28,7 +36,11 @@ namespace OpenAPI.Controllers
         {
             var res = _cholecystitsService.GetCholecystit(id);
 
-            return res is not null ? Ok(res) : BadRequest($"Model didn't found with id = {id}");
+            var lang = Request.Headers.AcceptLanguage.ToString();
+
+            var wrap = _HATEOASService.BuildHATEOASGet(res, lang);
+
+            return res is not null ? Ok(wrap) : BadRequest($"{_localization.Localize("BadGet", lang)} {id}");
         }
 
         [HttpGet("all")]
@@ -40,15 +52,17 @@ namespace OpenAPI.Controllers
         [HttpPut("{id:guid}")]
         public IActionResult Update([FromRoute] Guid id, [FromBody]CholecystitDTO cholecystitDto)
         {
-           var res =  _cholecystitsService.Update(id, cholecystitDto);
-            return res is not null ? Ok($"Cholecystit was successful UPDATE with id {res.Id}") : BadRequest("Model unsuccessful updated");
+            var lang = Request.Headers.AcceptLanguage.ToString();
+            var res =  _cholecystitsService.Update(id, cholecystitDto);
+            return res is not null ? Ok($"{_localization.Localize("SuccessfulUpdate", lang)} {res.Id}") : BadRequest(_localization.Localize("BadUpdate", lang));
         }
 
         [HttpDelete("{id:guid}")]
         public IActionResult Delete([FromRoute] Guid id)
         {
+            var lang = Request.Headers.AcceptLanguage.ToString();
             var res = _cholecystitsService.Delete(id);
-            return res is not null ? Ok($"Cholecystit was successful DELETE with id {res.Id}") : BadRequest("Model unsuccessful deleted");
+            return res is not null ? Ok($"{_localization.Localize("SuccessfulDelete", lang)} {res.Id}") : BadRequest(_localization.Localize("BadDelete", lang));
         }
 
 

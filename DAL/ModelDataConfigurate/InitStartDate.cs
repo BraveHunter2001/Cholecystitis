@@ -83,6 +83,51 @@ public static class InitStartDate
         }
     };
 
+    private static List<LocalizationDictionary> localizations = new List<LocalizationDictionary>()
+    {
+        new ("SuccessfulCreate",
+            "Холецистит был успешно СОЗДАН с id",
+            "Cholecystit was successful CREATE with id",
+            "Cholecystit buvo sėkmingai sukurti su id" ),
+
+        new ("BadCreate",
+            "Ошибка созадния холестицита",
+            "Error create cholecystit",
+            "Klaida sukurti cholecystit" ),
+
+
+        new ("BadGet",
+            "Модель не найдена с Id = ",
+            "Model didn't found with id = ",
+            "Modelis nebuvo rastas su id = " ),
+
+
+        new ("SuccessfulUpdate",
+            "Холецистит был успешнно ИЗМЕНЕН с id",
+            "Cholecystit was successful UPDATE with id",
+            "Cholecystit buvo sėkmingai atnaujinti su id" ),
+
+        new ("BadUpdate",
+            "Ошибка изменения холестицита",
+            "Error update cholecystit",
+            "Klaida atnaujinti cholecystit" ),
+
+        new ("SuccessfulDelete",
+            "Холецистит был успешнно удален с id",
+            "Cholecystit was successful delete with id",
+            "Cholecystit buvo sėkmingai ištrinti su id" ),
+
+        new ("BadDelete",
+            "Ошибка удаления холестицита",
+            "Error delete cholecystit",
+            "Klaida ištrinti cholecystit" ),
+
+        new ("Create", "Создать холестецит", "Create cholecystits", "sukurti tulžies pūslės akmenligę"),
+        new ("Update", "Изменить данные холестецит", "Update cholecystits", "atnaujinti cholestis"),
+        new ("Delete", "Удалить", "Delete cholecystits", "Pašalinti tulžies pūslės akmenligę"),
+
+    };  
+
     public static void Init(this ModelBuilder builder)
     {
         builder.Entity<Bacterium>()
@@ -96,5 +141,8 @@ public static class InitStartDate
 
         builder.Entity<Cholecystit>()
             .HasData(Cholecystits);
+
+        builder.Entity<LocalizationDictionary>()
+            .HasData(localizations);
     }
 }

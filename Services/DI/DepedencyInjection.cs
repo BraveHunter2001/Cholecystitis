@@ -10,5 +10,7 @@ public static class DependencyInjection
         servicies.AddTransient<IStoneService, StoneService>(); 
         servicies.AddTransient<IPatientService, PatientService>();
         servicies.AddTransient<ICholecystitsService, CholecystitsService>();
+        servicies.AddTransient<ILocalizationService, LocalizationService>();
+        servicies.AddTransient<IHATEOASService, HATEOASWrapperService>();
     }
 }

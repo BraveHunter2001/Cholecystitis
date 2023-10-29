@@ -11,6 +11,7 @@ public class CholecystitisContext : DbContext
     public DbSet<Stone> Stones { get; set; }
     public DbSet<Bacterium> Bacteriums { get; set; }
     public DbSet<Cholecystit> Cholecystits { get; set; }
+    public DbSet<LocalizationDictionary> LocalizationDictionary { get; set; }
 
     public CholecystitisContext(DbContextOptions<CholecystitisContext> option) : base(option)
     {
@@ -33,6 +34,8 @@ public class CholecystitisContext : DbContext
         builder.Entity<Cholecystit>()
             .HasMany(c => c.Bacterias)
             .WithMany(b => b.Cholecystits);
+
+        builder.Entity<LocalizationDictionary>().HasKey(p => p.Key);
 
         builder.Init();
 
