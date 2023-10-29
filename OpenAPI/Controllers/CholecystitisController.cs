@@ -25,22 +25,22 @@ namespace OpenAPI.Controllers
         {
             var ch = _cholecystitsService.Create(cholecystit);
 
-            var lang = Request.Headers.AcceptLanguage.ToString(); 
+            var lang = Request.Headers.AcceptLanguage.ToString();
 
-            return ch is not null ? Ok($"{_localization.Localize("SuccessfulCreate", lang)} {ch.Id}") :
-                BadRequest(_localization.Localize("BadCreate", lang));
+            return ch is not null ? Ok($"{_localization.Localize("SuccessfulCreate", lang)} {ch.Id}") : BadRequest(_localization.Localize("BadCreate", lang));
         }
 
         [HttpGet("{id:guid}")]
-        public IActionResult Get([FromRoute]Guid id)
+        public IActionResult Get([FromRoute] Guid id)
         {
+            var lang = Request.Headers.AcceptLanguage.ToString();
             var res = _cholecystitsService.GetCholecystit(id);
 
-            var lang = Request.Headers.AcceptLanguage.ToString();
+            if (res is null) return BadRequest($"{_localization.Localize("BadGet", lang)} {id}");
 
             var wrap = _HATEOASService.BuildHATEOASGet(res, lang);
 
-            return res is not null ? Ok(wrap) : BadRequest($"{_localization.Localize("BadGet", lang)} {id}");
+            return Ok(wrap);
         }
 
         [HttpGet("all")]
@@ -50,10 +50,10 @@ namespace OpenAPI.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        public IActionResult Update([FromRoute] Guid id, [FromBody]CholecystitDTO cholecystitDto)
+        public IActionResult Update([FromRoute] Guid id, [FromBody] CholecystitDTO cholecystitDto)
         {
             var lang = Request.Headers.AcceptLanguage.ToString();
-            var res =  _cholecystitsService.Update(id, cholecystitDto);
+            var res = _cholecystitsService.Update(id, cholecystitDto);
             return res is not null ? Ok($"{_localization.Localize("SuccessfulUpdate", lang)} {res.Id}") : BadRequest(_localization.Localize("BadUpdate", lang));
         }
 
@@ -64,7 +64,5 @@ namespace OpenAPI.Controllers
             var res = _cholecystitsService.Delete(id);
             return res is not null ? Ok($"{_localization.Localize("SuccessfulDelete", lang)} {res.Id}") : BadRequest(_localization.Localize("BadDelete", lang));
         }
-
-
     }
 }
