@@ -1,5 +1,6 @@
 using DAL;
 using DAL.DI;
+using Prometheus;
 using Services.DI;
 using System.Text.Json.Serialization;
 
@@ -32,15 +33,30 @@ if (app.Environment.IsDevelopment())
 
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<CholecystitisContext>();
-    db.Database.EnsureDeleted();
+   // db.Database.EnsureDeleted();
     db.Database.EnsureCreated();
 }
 
+
+app.UseRouting();
+
+// Capture metrics about all received HTTP requests.
+app.UseHttpMetrics(options =>
+{
+    // This will preserve only the first digit of the status code.
+    // For example: 200, 201, 203 -> 2xx
+    options.ReduceStatusCodeCardinality();
+});
+
+
 app.UseCors(MyAllowSpecificOrigins);
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
+app.UseEndpoints(endpoints => endpoints.MapMetrics());
+
 app.MapControllers();
+
+
 
 app.Run();

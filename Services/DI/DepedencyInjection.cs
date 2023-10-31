@@ -6,6 +6,8 @@ public static class DependencyInjection
 {
     public static void AddCholicystitsServices(this IServiceCollection servicies)
     {
+        servicies.AddSingleton<IActuatorService, ActuatorService>();
+
         servicies.AddScoped<ILocalizationService, LocalizationService>();
 
         servicies.AddTransient<IBacteriumService, BacteriumService>();
@@ -13,5 +15,6 @@ public static class DependencyInjection
         servicies.AddTransient<IPatientService, PatientService>();
         servicies.AddTransient<ICholecystitsService, CholecystitsService>();
         servicies.AddTransient<IHATEOASService, HATEOASWrapperService>();
+       
     }
 }
