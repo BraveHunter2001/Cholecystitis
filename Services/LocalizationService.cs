@@ -10,7 +10,7 @@ namespace Services
 
     public class LocalizationService : ILocalizationService
     {
-        IRepository<LocalizationDictionary> _repository;
+        private readonly IRepository<LocalizationDictionary> _repository;
 
         public LocalizationService(IRepository<LocalizationDictionary> repository)
         {

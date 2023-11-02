@@ -50,7 +50,7 @@ app.UseHttpMetrics(options =>
 
 
 app.UseCors(MyAllowSpecificOrigins);
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints => endpoints.MapMetrics());

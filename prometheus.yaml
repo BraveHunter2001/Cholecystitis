@@ -8,4 +8,4 @@ scrape_configs:
                   # or you'd have to create a certificate 
                   # with `host.docker.internal`
     static_configs:
-         - targets: ['host.docker.internal:5000', 'openapi:80']
+         - targets: ['host.docker.internal:5000']
