@@ -1,0 +1,6 @@
+{
+  "stag-conf": {
+    "envType": "Staging",
+    "testNum": "1"
+  }
+}

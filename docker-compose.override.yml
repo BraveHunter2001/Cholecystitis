@@ -13,3 +13,15 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
       - dev
+  configs:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80   
+    ports:
+      - "5002:80"
+      - "5003:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - dev

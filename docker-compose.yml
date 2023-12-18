@@ -5,16 +5,25 @@ networks:
     driver: bridge
 
 services:
+  configs:
+    image: ${DOCKER_REGISTRY-}configs
+    build:
+      context: .
+      dockerfile: ConfigurationAPI\Dockerfile
+    depends_on:
+        - postgres
+    networks:
+          - dev
   openapi:
     image: ${DOCKER_REGISTRY-}openapi
     build:
       context: .
       dockerfile: OpenAPI/Dockerfile
     depends_on:
-      - postgres
+      - configs
     networks:
         - dev
-  
+
   postgres:
     container_name: postgres_container
     image: 'postgres:latest'

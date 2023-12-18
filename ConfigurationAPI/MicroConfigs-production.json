@@ -1,0 +1,6 @@
+{
+  "prod-conf": {
+    "envType": "Production",
+    "db": "Server=postgres;Port=5432;Database=cholecystitis;User ID=pguser;Password=pgadmin;"
+  }
+}
