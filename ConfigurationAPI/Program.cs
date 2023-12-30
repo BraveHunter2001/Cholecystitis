@@ -1,3 +1,5 @@
+using Prometheus;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,6 +25,16 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+app.UseRouting();
+// Capture metrics about all received HTTP requests.
+app.UseHttpMetrics(options =>
+{
+    // This will preserve only the first digit of the status code.
+    // For example: 200, 201, 203 -> 2xx
+    options.ReduceStatusCodeCardinality();
+});
+
 
 // Configure the HTTP request pipeline.
 app.UseCors(MyAllowSpecificOrigins);

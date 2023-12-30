@@ -15,13 +15,13 @@ public static class InitStartDate
 
     private static List<Bacterium> Bacteriums = new()
     {
-        new Bacterium { Id = Guid.NewGuid(), Name = "Escherichia coli" },
-        new Bacterium { Id = Guid.NewGuid(), Name = "Klebsiella spp" },
-        new Bacterium { Id = Guid.NewGuid(), Name = "Enterobacter spp" },
-        new Bacterium { Id = Guid.NewGuid(), Name = "Bacteroides" },
-        new Bacterium { Id = Guid.NewGuid(), Name = "Clostridia spp" },
-        new Bacterium { Id = Guid.NewGuid(), Name = "Fusobacterium spp" },
-        new Bacterium { Id = Guid.NewGuid(), Name = "enterococci" },
+        new Bacterium { Id = new Guid("068511d3-409e-43dc-8cee-75b879e2463a"), Name = "Escherichia coli" },
+        new Bacterium { Id = new Guid("2534583e-d9f2-4850-b72b-03d1d50ed8b7"), Name = "Klebsiella spp" },
+        new Bacterium { Id = new Guid("5e601535-ce38-48ed-a416-e64d43b29105"), Name = "Enterobacter spp" },
+        new Bacterium { Id = new Guid("655474b2-be1c-4500-b8b0-6f31f312716e"), Name = "Bacteroides" },
+        new Bacterium { Id = new Guid("9a5479a2-7596-40dc-8678-62a747821246"), Name = "Clostridia spp" },
+        new Bacterium { Id = new Guid("a8b36f71-d3d1-425d-bb28-e9cfde8f73cb"), Name = "Fusobacterium spp" },
+        new Bacterium { Id = new Guid("e2af3483-aa79-4cd9-97f5-c76406584ec2"), Name = "enterococci" },
     };
 
     private static List<Patient> Patients = new()

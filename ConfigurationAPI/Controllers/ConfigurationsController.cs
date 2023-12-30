@@ -41,11 +41,12 @@ namespace ConfigurationAPI.Controllers
             return Ok(sb.ToString());
         }
 
-        [HttpGet()]
+        [HttpGet]
         public IActionResult GetDbConnect()
         {
 
             var configs = _configuration.GetSection("prod-conf").GetSection("db").Value;
+            Console.WriteLine($"Was requested config connetction string from {HttpContext.Request.Host}");
             return Ok(configs);
         }
     }
